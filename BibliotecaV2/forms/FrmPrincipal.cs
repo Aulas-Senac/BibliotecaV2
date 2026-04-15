@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BibliotecaV2
+namespace BibliotecaV2.forms
 {
-    public partial class Form1 : Form
+    public partial class FrmPrincipal : Form
     {
-        public Form1()
+        public FrmPrincipal()
         {
             InitializeComponent();
         }
