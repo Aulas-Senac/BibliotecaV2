@@ -1,0 +1,8 @@
+USE BibliotecaDB
+GO
+
+CREATE PROCEDURE ObterUsuarios
+AS
+BEGIN
+	SELECT * FROM Usuarios
+END
