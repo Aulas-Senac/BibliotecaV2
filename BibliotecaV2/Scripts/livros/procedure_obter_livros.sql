@@ -1,0 +1,8 @@
+USE BibliotecaDB
+GO
+
+CREATE PROCEDURE ObterLivro
+AS
+BEGIN
+	SELECT * FROM Livros;
+END

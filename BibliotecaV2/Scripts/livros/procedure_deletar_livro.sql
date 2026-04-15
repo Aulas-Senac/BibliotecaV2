@@ -1,0 +1,10 @@
+USE BibliotecaDB
+GO
+
+CREATE PROCEDURE DeletarLivro
+	@Id INT
+AS
+BEGIN
+	DELETE FROM Livros
+	WHERE LivroID = @Id;
+END
