@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="controls\UsuarioControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controls\UsuarioControl.Designer.cs">
+      <DependentUpon>UsuarioControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,6 +65,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="controls\UsuarioControl.resx">
+      <DependentUpon>UsuarioControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
@@ -87,8 +96,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="controls\" />
-    <Folder Include="data\" />
     <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
