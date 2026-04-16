@@ -51,6 +51,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="data\BibliotecaDBDataSet.cs">
+      <DependentUpon>BibliotecaDBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="data\BibliotecaDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BibliotecaDBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="controls\LivrosControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controls\LivrosControl.Designer.cs">
+      <DependentUpon>LivrosControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="controls\UsuarioControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -65,6 +79,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="controls\LivrosControl.resx">
+      <DependentUpon>LivrosControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="controls\UsuarioControl.resx">
       <DependentUpon>UsuarioControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -76,6 +93,17 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="data\BibliotecaDBDataSet.xsc">
+      <DependentUpon>BibliotecaDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="data\BibliotecaDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BibliotecaDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="data\BibliotecaDBDataSet.xss">
+      <DependentUpon>BibliotecaDBDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
