@@ -49,25 +49,26 @@
             // 
             this.dtpDataCadastro.CustomFormat = "dd/MM/yyyy HH:mm:ss";
             this.dtpDataCadastro.Enabled = false;
-            this.dtpDataCadastro.Location = new System.Drawing.Point(56, 181);
+            this.dtpDataCadastro.Location = new System.Drawing.Point(24, 177);
             this.dtpDataCadastro.Name = "dtpDataCadastro";
             this.dtpDataCadastro.Size = new System.Drawing.Size(256, 20);
             this.dtpDataCadastro.TabIndex = 58;
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(56, 221);
+            this.btnLimpar.Location = new System.Drawing.Point(24, 217);
             this.btnLimpar.Margin = new System.Windows.Forms.Padding(2);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpar.TabIndex = 57;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // lblBuscar
             // 
             this.lblBuscar.AutoSize = true;
-            this.lblBuscar.Location = new System.Drawing.Point(330, 16);
+            this.lblBuscar.Location = new System.Drawing.Point(298, 12);
             this.lblBuscar.Name = "lblBuscar";
             this.lblBuscar.Size = new System.Drawing.Size(80, 13);
             this.lblBuscar.TabIndex = 56;
@@ -75,42 +76,46 @@
             // 
             // txtPesquisa
             // 
-            this.txtPesquisa.Location = new System.Drawing.Point(333, 32);
+            this.txtPesquisa.Location = new System.Drawing.Point(301, 28);
             this.txtPesquisa.Multiline = true;
             this.txtPesquisa.Name = "txtPesquisa";
-            this.txtPesquisa.Size = new System.Drawing.Size(406, 20);
+            this.txtPesquisa.Size = new System.Drawing.Size(313, 20);
             this.txtPesquisa.TabIndex = 55;
+            this.txtPesquisa.TextChanged += new System.EventHandler(this.txtPesquisa_TextChanged);
             // 
             // btnAtualizarLista
             // 
-            this.btnAtualizarLista.Location = new System.Drawing.Point(333, 341);
+            this.btnAtualizarLista.Location = new System.Drawing.Point(301, 337);
             this.btnAtualizarLista.Name = "btnAtualizarLista";
             this.btnAtualizarLista.Size = new System.Drawing.Size(87, 23);
             this.btnAtualizarLista.TabIndex = 54;
             this.btnAtualizarLista.Text = "Atualizar Lista";
             this.btnAtualizarLista.UseVisualStyleBackColor = true;
+            this.btnAtualizarLista.Click += new System.EventHandler(this.btnAtualizarLista_Click);
             // 
             // btnRemover
             // 
-            this.btnRemover.Location = new System.Drawing.Point(664, 341);
+            this.btnRemover.Location = new System.Drawing.Point(539, 337);
             this.btnRemover.Name = "btnRemover";
             this.btnRemover.Size = new System.Drawing.Size(75, 23);
             this.btnRemover.TabIndex = 53;
             this.btnRemover.Text = "Remover";
             this.btnRemover.UseVisualStyleBackColor = true;
+            this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
             // 
             // lboDados
             // 
             this.lboDados.FormattingEnabled = true;
-            this.lboDados.Location = new System.Drawing.Point(333, 58);
+            this.lboDados.Location = new System.Drawing.Point(301, 54);
             this.lboDados.Name = "lboDados";
-            this.lboDados.Size = new System.Drawing.Size(406, 277);
+            this.lboDados.Size = new System.Drawing.Size(313, 277);
             this.lboDados.TabIndex = 52;
+            this.lboDados.SelectedIndexChanged += new System.EventHandler(this.lboDados_SelectedIndexChanged);
             // 
             // lblDataCadastro
             // 
             this.lblDataCadastro.AutoSize = true;
-            this.lblDataCadastro.Location = new System.Drawing.Point(53, 164);
+            this.lblDataCadastro.Location = new System.Drawing.Point(21, 160);
             this.lblDataCadastro.Name = "lblDataCadastro";
             this.lblDataCadastro.Size = new System.Drawing.Size(78, 13);
             this.lblDataCadastro.TabIndex = 51;
@@ -118,7 +123,7 @@
             // 
             // txtTelefone
             // 
-            this.txtTelefone.Location = new System.Drawing.Point(56, 130);
+            this.txtTelefone.Location = new System.Drawing.Point(24, 126);
             this.txtTelefone.Multiline = true;
             this.txtTelefone.Name = "txtTelefone";
             this.txtTelefone.Size = new System.Drawing.Size(256, 20);
@@ -127,7 +132,7 @@
             // lblTelefone
             // 
             this.lblTelefone.AutoSize = true;
-            this.lblTelefone.Location = new System.Drawing.Point(53, 114);
+            this.lblTelefone.Location = new System.Drawing.Point(21, 110);
             this.lblTelefone.Name = "lblTelefone";
             this.lblTelefone.Size = new System.Drawing.Size(52, 13);
             this.lblTelefone.TabIndex = 49;
@@ -135,7 +140,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(56, 80);
+            this.txtEmail.Location = new System.Drawing.Point(24, 76);
             this.txtEmail.Multiline = true;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(256, 20);
@@ -144,7 +149,7 @@
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(53, 64);
+            this.lblEmail.Location = new System.Drawing.Point(21, 60);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(35, 13);
             this.lblEmail.TabIndex = 47;
@@ -152,16 +157,17 @@
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(136, 221);
+            this.btnSalvar.Location = new System.Drawing.Point(104, 217);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(176, 23);
             this.btnSalvar.TabIndex = 46;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(56, 32);
+            this.txtNome.Location = new System.Drawing.Point(24, 28);
             this.txtNome.Multiline = true;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(256, 20);
@@ -170,7 +176,7 @@
             // lblNome
             // 
             this.lblNome.AutoSize = true;
-            this.lblNome.Location = new System.Drawing.Point(53, 16);
+            this.lblNome.Location = new System.Drawing.Point(21, 12);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(38, 13);
             this.lblNome.TabIndex = 44;
@@ -196,7 +202,7 @@
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.lblNome);
             this.Name = "UsuarioControl";
-            this.Size = new System.Drawing.Size(800, 380);
+            this.Size = new System.Drawing.Size(642, 374);
             this.ResumeLayout(false);
             this.PerformLayout();
 
