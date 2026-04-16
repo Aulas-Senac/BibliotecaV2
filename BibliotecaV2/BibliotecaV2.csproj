@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="controls\FuncionarioControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controls\FuncionarioControl.Designer.cs">
+      <DependentUpon>FuncionarioControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="data\BibliotecaDBDataSet.cs">
       <DependentUpon>BibliotecaDBDataSet.xsd</DependentUpon>
     </Compile>
@@ -79,6 +85,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="controls\FuncionarioControl.resx">
+      <DependentUpon>FuncionarioControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="controls\LivrosControl.resx">
       <DependentUpon>LivrosControl.cs</DependentUpon>
     </EmbeddedResource>
