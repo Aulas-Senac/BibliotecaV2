@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BibliotecaV2.controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,9 +18,21 @@ namespace BibliotecaV2.forms
             InitializeComponent();
         }
 
+        #region metodos
+
+        private void AbrirTela(Control tela) {
+            pnlConteudo.Controls.Clear();
+
+            tela.Dock = DockStyle.Fill;
+            pnlConteudo.Controls.Add(tela);
+        }
+
+        #endregion
+
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
-
+            UsuarioControl usuarioControl = new UsuarioControl();
+            AbrirTela(usuarioControl);
         }
 
         private void btnLivros_Click(object sender, EventArgs e)

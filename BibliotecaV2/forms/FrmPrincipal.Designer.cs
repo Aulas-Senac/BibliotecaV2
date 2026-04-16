@@ -127,9 +127,9 @@
             // 
             this.pnlConteudo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(211)))), ((int)(((byte)(217)))));
             this.pnlConteudo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlConteudo.Location = new System.Drawing.Point(0, 70);
+            this.pnlConteudo.Location = new System.Drawing.Point(158, 70);
             this.pnlConteudo.Name = "pnlConteudo";
-            this.pnlConteudo.Size = new System.Drawing.Size(800, 380);
+            this.pnlConteudo.Size = new System.Drawing.Size(642, 380);
             this.pnlConteudo.TabIndex = 1;
             // 
             // pnlUsuarios
@@ -266,8 +266,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.pnlMenuLateral);
             this.Controls.Add(this.pnlConteudo);
+            this.Controls.Add(this.pnlMenuLateral);
             this.Controls.Add(this.pnlHeader);
             this.Name = "FrmPrincipal";
             this.Text = "FrmPrincipal";
