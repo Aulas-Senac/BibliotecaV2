@@ -57,6 +57,12 @@
     <Compile Include="controls\FuncionarioControl.Designer.cs">
       <DependentUpon>FuncionarioControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="controls\RequisicaoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controls\RequisicaoControl.Designer.cs">
+      <DependentUpon>RequisicaoControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="data\BibliotecaDBDataSet.cs">
       <DependentUpon>BibliotecaDBDataSet.xsd</DependentUpon>
     </Compile>
@@ -90,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="controls\LivrosControl.resx">
       <DependentUpon>LivrosControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="controls\RequisicaoControl.resx">
+      <DependentUpon>RequisicaoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="controls\UsuarioControl.resx">
       <DependentUpon>UsuarioControl.cs</DependentUpon>
