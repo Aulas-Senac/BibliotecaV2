@@ -51,6 +51,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="data\BibliotecaDBDataSet.cs">
+      <DependentUpon>BibliotecaDBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="data\BibliotecaDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BibliotecaDBDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="controls\FuncionarioControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -62,14 +70,6 @@
     </Compile>
     <Compile Include="controls\RequisicaoControl.Designer.cs">
       <DependentUpon>RequisicaoControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="data\BibliotecaDBDataSet.cs">
-      <DependentUpon>BibliotecaDBDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="data\BibliotecaDBDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BibliotecaDBDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="controls\LivrosControl.cs">
       <SubType>UserControl</SubType>

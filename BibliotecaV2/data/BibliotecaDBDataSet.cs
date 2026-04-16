@@ -1,4 +1,6 @@
-﻿namespace BibliotecaV2.data
+﻿using System.Runtime.Remoting.Messaging;
+
+namespace BibliotecaV2.data
 {
 
 
@@ -14,10 +16,6 @@
             {
                 return $"{Titulo} | {Genero} | {Autor} | {Editora} | {ISBN} | {QuantidadeDisponivel} | {DataCadastro}";
             }
-        }
-
-        partial class UsuariosDataTable
-        {
         }
 
         partial class UsuariosRow

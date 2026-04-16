@@ -16,6 +16,7 @@ namespace BibliotecaV2.forms
         public FrmPrincipal()
         {
             InitializeComponent();
+            DoubleBuffered = true;
         }
 
         #region metodos

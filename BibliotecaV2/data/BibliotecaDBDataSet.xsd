@@ -4,12 +4,12 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" GeneratorFunctionsComponentClassName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="QueriesTableAdapter" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="BibliotecaDBConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="BibliotecaDBConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.BibliotecaV2.Properties.Settings.GlobalReference.Default.BibliotecaDBConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="BibliotecaDBConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="BibliotecaDBConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.BibliotecaV2.Properties.Settings.GlobalReference.Default.BibliotecaDBConnectionString1" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FuncionariosTableAdapter" GeneratorDataComponentClassName="FuncionariosTableAdapter" Name="Funcionarios" UserDataComponentName="FuncionariosTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="BibliotecaDBConnectionString (Settings)" DbObjectName="BibliotecaDB.dbo.Funcionarios" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BibliotecaDBConnectionString1 (Settings)" DbObjectName="BibliotecaDB.dbo.Funcionarios" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [dbo].[Funcionarios] WHERE (([FuncionarioID] = @Original_FuncionarioID) AND ([NomeUsuario] = @Original_NomeUsuario) AND ([SenhaHash] = @Original_SenhaHash) AND ([NomeCompleto] = @Original_NomeCompleto) AND ([Email] = @Original_Email) AND ((@IsNull_DataCadastro = 1 AND [DataCadastro] IS NULL) OR ([DataCadastro] = @Original_DataCadastro)) AND ((@IsNull_UltimoLogin = 1 AND [UltimoLogin] IS NULL) OR ([UltimoLogin] = @Original_UltimoLogin)) AND ((@IsNull_Ativo = 1 AND [Ativo] IS NULL) OR ([Ativo] = @Original_Ativo)))</CommandText>
@@ -95,7 +95,7 @@ SELECT FuncionarioID, NomeUsuario, SenhaHash, NomeCompleto, Cargo, Email, DataCa
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="LivrosTableAdapter" GeneratorDataComponentClassName="LivrosTableAdapter" Name="Livros" UserDataComponentName="LivrosTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="BibliotecaDBConnectionString (Settings)" DbObjectName="BibliotecaDB.dbo.ObterLivro" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BibliotecaDBConnectionString1 (Settings)" DbObjectName="BibliotecaDB.dbo.ObterLivro" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.DeletarLivro</CommandText>
@@ -158,7 +158,7 @@ SELECT FuncionarioID, NomeUsuario, SenhaHash, NomeCompleto, Cargo, Email, DataCa
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="RequisicoesTableAdapter" GeneratorDataComponentClassName="RequisicoesTableAdapter" Name="Requisicoes" UserDataComponentName="RequisicoesTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="BibliotecaDBConnectionString (Settings)" DbObjectName="BibliotecaDB.dbo.Requisicoes" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BibliotecaDBConnectionString1 (Settings)" DbObjectName="BibliotecaDB.dbo.Requisicoes" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [dbo].[Requisicoes] WHERE (([RequisicaoID] = @Original_RequisicaoID) AND ([UsuarioID] = @Original_UsuarioID) AND ([LivroID] = @Original_LivroID) AND ((@IsNull_FuncionarioID = 1 AND [FuncionarioID] IS NULL) OR ([FuncionarioID] = @Original_FuncionarioID)) AND ((@IsNull_DataRequisicao = 1 AND [DataRequisicao] IS NULL) OR ([DataRequisicao] = @Original_DataRequisicao)) AND ((@IsNull_DataDevolucao = 1 AND [DataDevolucao] IS NULL) OR ([DataDevolucao] = @Original_DataDevolucao)) AND ([Status] = @Original_Status))</CommandText>
@@ -236,13 +236,13 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UsuariosTableAdapter" GeneratorDataComponentClassName="UsuariosTableAdapter" Name="Usuarios" UserDataComponentName="UsuariosTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="BibliotecaDBConnectionString (Settings)" DbObjectName="BibliotecaDB.dbo.ObterUsuarios" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BibliotecaDBConnectionString1 (Settings)" DbObjectName="BibliotecaDB.dbo.ObterUsuarios" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
-                    <CommandText>dbo.DeletarUsuario</CommandText>
+                    <CommandText>dbo.DeletarLivro</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumn="UsuarioID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumn="LivroID" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
                   </DbCommand>
                 </DeleteCommand>
@@ -280,17 +280,17 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
               </DbSource>
             </MainSource>
             <Mappings>
+              <Mapping SourceColumn="DataCadastro" DataSetColumn="DataCadastro" />
               <Mapping SourceColumn="UsuarioID" DataSetColumn="UsuarioID" />
               <Mapping SourceColumn="Nome" DataSetColumn="Nome" />
               <Mapping SourceColumn="Email" DataSetColumn="Email" />
               <Mapping SourceColumn="Telefone" DataSetColumn="Telefone" />
-              <Mapping SourceColumn="DataCadastro" DataSetColumn="DataCadastro" />
             </Mappings>
             <Sources />
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ObterFuncionariosTableAdapter" GeneratorDataComponentClassName="ObterFuncionariosTableAdapter" Name="ObterFuncionarios" UserDataComponentName="ObterFuncionariosTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="BibliotecaDBConnectionString (Settings)" DbObjectName="BibliotecaDB.dbo.ObterFuncionarios" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BibliotecaDBConnectionString1 (Settings)" DbObjectName="BibliotecaDB.dbo.ObterFuncionarios" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.ObterFuncionarios</CommandText>
@@ -316,7 +316,7 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ObterLivroTableAdapter" GeneratorDataComponentClassName="ObterLivroTableAdapter" Name="ObterLivro" UserDataComponentName="ObterLivroTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="BibliotecaDBConnectionString (Settings)" DbObjectName="BibliotecaDB.dbo.ObterLivro" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BibliotecaDBConnectionString1 (Settings)" DbObjectName="BibliotecaDB.dbo.ObterLivro" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.ObterLivro</CommandText>
@@ -341,7 +341,7 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ObterRequisicaoTableAdapter" GeneratorDataComponentClassName="ObterRequisicaoTableAdapter" Name="ObterRequisicao" UserDataComponentName="ObterRequisicaoTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="BibliotecaDBConnectionString (Settings)" DbObjectName="BibliotecaDB.dbo.ObterRequisicao" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BibliotecaDBConnectionString1 (Settings)" DbObjectName="BibliotecaDB.dbo.ObterRequisicao" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.ObterRequisicao</CommandText>
@@ -365,7 +365,7 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ObterUsuariosTableAdapter" GeneratorDataComponentClassName="ObterUsuariosTableAdapter" Name="ObterUsuarios" UserDataComponentName="ObterUsuariosTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="BibliotecaDBConnectionString (Settings)" DbObjectName="BibliotecaDB.dbo.ObterUsuarios" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BibliotecaDBConnectionString1 (Settings)" DbObjectName="BibliotecaDB.dbo.ObterUsuarios" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.ObterUsuarios</CommandText>
@@ -387,7 +387,7 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
           </TableAdapter>
         </Tables>
         <Sources>
-          <DbSource ConnectionRef="BibliotecaDBConnectionString (Settings)" DbObjectName="BibliotecaDB.dbo.AtualizarFuncionario" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="AtualizarFuncionario" MethodsParameterType="CLR" Modifier="Public" Name="AtualizarFuncionario" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="AtualizarFuncionario">
+          <DbSource ConnectionRef="BibliotecaDBConnectionString1 (Settings)" DbObjectName="BibliotecaDB.dbo.AtualizarFuncionario" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="AtualizarFuncionario" MethodsParameterType="CLR" Modifier="Public" Name="AtualizarFuncionario" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="AtualizarFuncionario">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.AtualizarFuncionario</CommandText>
@@ -405,7 +405,7 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="BibliotecaDBConnectionString (Settings)" DbObjectName="BibliotecaDB.dbo.AtualizarLivro" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="AtualizarLivro" MethodsParameterType="CLR" Modifier="Public" Name="AtualizarLivro" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="AtualizarLivro">
+          <DbSource ConnectionRef="BibliotecaDBConnectionString1 (Settings)" DbObjectName="BibliotecaDB.dbo.AtualizarLivro" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="AtualizarLivro" MethodsParameterType="CLR" Modifier="Public" Name="AtualizarLivro" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="AtualizarLivro">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.AtualizarLivro</CommandText>
@@ -422,7 +422,7 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="BibliotecaDBConnectionString (Settings)" DbObjectName="BibliotecaDB.dbo.AtualizarRequisicao" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="AtualizarRequisicao" MethodsParameterType="CLR" Modifier="Public" Name="AtualizarRequisicao" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="AtualizarRequisicao">
+          <DbSource ConnectionRef="BibliotecaDBConnectionString1 (Settings)" DbObjectName="BibliotecaDB.dbo.AtualizarRequisicao" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="AtualizarRequisicao" MethodsParameterType="CLR" Modifier="Public" Name="AtualizarRequisicao" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="AtualizarRequisicao">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.AtualizarRequisicao</CommandText>
@@ -438,7 +438,7 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="BibliotecaDBConnectionString (Settings)" DbObjectName="BibliotecaDB.dbo.AtualizarUsuario" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="AtualizarUsuario" MethodsParameterType="CLR" Modifier="Public" Name="AtualizarUsuario" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="AtualizarUsuario">
+          <DbSource ConnectionRef="BibliotecaDBConnectionString1 (Settings)" DbObjectName="BibliotecaDB.dbo.AtualizarUsuario" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="AtualizarUsuario" MethodsParameterType="CLR" Modifier="Public" Name="AtualizarUsuario" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="AtualizarUsuario">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.AtualizarUsuario</CommandText>
@@ -452,7 +452,7 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="BibliotecaDBConnectionString (Settings)" DbObjectName="BibliotecaDB.dbo.DeletarFuncionario" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="DeletarFuncionario" MethodsParameterType="CLR" Modifier="Public" Name="DeletarFuncionario" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="DeletarFuncionario">
+          <DbSource ConnectionRef="BibliotecaDBConnectionString1 (Settings)" DbObjectName="BibliotecaDB.dbo.DeletarFuncionario" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="DeletarFuncionario" MethodsParameterType="CLR" Modifier="Public" Name="DeletarFuncionario" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="DeletarFuncionario">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.DeletarFuncionario</CommandText>
@@ -463,7 +463,7 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="BibliotecaDBConnectionString (Settings)" DbObjectName="BibliotecaDB.dbo.DeletarLivro" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="DeletarLivro" MethodsParameterType="CLR" Modifier="Public" Name="DeletarLivro" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="DeletarLivro">
+          <DbSource ConnectionRef="BibliotecaDBConnectionString1 (Settings)" DbObjectName="BibliotecaDB.dbo.DeletarLivro" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="DeletarLivro" MethodsParameterType="CLR" Modifier="Public" Name="DeletarLivro" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="DeletarLivro">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.DeletarLivro</CommandText>
@@ -474,7 +474,7 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="BibliotecaDBConnectionString (Settings)" DbObjectName="BibliotecaDB.dbo.DeletarRequisicao" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="DeletarRequisicao" MethodsParameterType="CLR" Modifier="Public" Name="DeletarRequisicao" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy6" UserSourceName="DeletarRequisicao">
+          <DbSource ConnectionRef="BibliotecaDBConnectionString1 (Settings)" DbObjectName="BibliotecaDB.dbo.DeletarRequisicao" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="DeletarRequisicao" MethodsParameterType="CLR" Modifier="Public" Name="DeletarRequisicao" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy6" UserSourceName="DeletarRequisicao">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.DeletarRequisicao</CommandText>
@@ -485,7 +485,7 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="BibliotecaDBConnectionString (Settings)" DbObjectName="BibliotecaDB.dbo.DeletarUsuario" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="DeletarUsuario" MethodsParameterType="CLR" Modifier="Public" Name="DeletarUsuario" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy7" UserSourceName="DeletarUsuario">
+          <DbSource ConnectionRef="BibliotecaDBConnectionString1 (Settings)" DbObjectName="BibliotecaDB.dbo.DeletarUsuario" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="DeletarUsuario" MethodsParameterType="CLR" Modifier="Public" Name="DeletarUsuario" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy7" UserSourceName="DeletarUsuario">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.DeletarUsuario</CommandText>
@@ -496,7 +496,7 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="BibliotecaDBConnectionString (Settings)" DbObjectName="BibliotecaDB.dbo.InserirFuncionario" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="InserirFuncionario" MethodsParameterType="CLR" Modifier="Public" Name="InserirFuncionario" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy8" UserSourceName="InserirFuncionario">
+          <DbSource ConnectionRef="BibliotecaDBConnectionString1 (Settings)" DbObjectName="BibliotecaDB.dbo.InserirFuncionario" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="InserirFuncionario" MethodsParameterType="CLR" Modifier="Public" Name="InserirFuncionario" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy8" UserSourceName="InserirFuncionario">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.InserirFuncionario</CommandText>
@@ -513,7 +513,7 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="BibliotecaDBConnectionString (Settings)" DbObjectName="BibliotecaDB.dbo.InserirLivro" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="InserirLivro" MethodsParameterType="CLR" Modifier="Public" Name="InserirLivro" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy9" UserSourceName="InserirLivro">
+          <DbSource ConnectionRef="BibliotecaDBConnectionString1 (Settings)" DbObjectName="BibliotecaDB.dbo.InserirLivro" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="InserirLivro" MethodsParameterType="CLR" Modifier="Public" Name="InserirLivro" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy9" UserSourceName="InserirLivro">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.InserirLivro</CommandText>
@@ -529,7 +529,7 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="BibliotecaDBConnectionString (Settings)" DbObjectName="BibliotecaDB.dbo.InserirRequisicao" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="InserirRequisicao" MethodsParameterType="CLR" Modifier="Public" Name="InserirRequisicao" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy10" UserSourceName="InserirRequisicao">
+          <DbSource ConnectionRef="BibliotecaDBConnectionString1 (Settings)" DbObjectName="BibliotecaDB.dbo.InserirRequisicao" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="InserirRequisicao" MethodsParameterType="CLR" Modifier="Public" Name="InserirRequisicao" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy10" UserSourceName="InserirRequisicao">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.InserirRequisicao</CommandText>
@@ -543,7 +543,7 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="BibliotecaDBConnectionString (Settings)" DbObjectName="BibliotecaDB.dbo.InserirUsuario" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="InserirUsuario" MethodsParameterType="CLR" Modifier="Public" Name="InserirUsuario" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy11" UserSourceName="InserirUsuario">
+          <DbSource ConnectionRef="BibliotecaDBConnectionString1 (Settings)" DbObjectName="BibliotecaDB.dbo.InserirUsuario" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="InserirUsuario" MethodsParameterType="CLR" Modifier="Public" Name="InserirUsuario" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy11" UserSourceName="InserirUsuario">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.InserirUsuario</CommandText>
@@ -674,29 +674,29 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
         <xs:element name="Usuarios" msprop:Generator_RowClassName="UsuariosRow" msprop:Generator_RowEvHandlerName="UsuariosRowChangeEventHandler" msprop:Generator_RowDeletedName="UsuariosRowDeleted" msprop:Generator_RowDeletingName="UsuariosRowDeleting" msprop:Generator_RowEvArgName="UsuariosRowChangeEvent" msprop:Generator_TablePropName="Usuarios" msprop:Generator_RowChangedName="UsuariosRowChanged" msprop:Generator_UserTableName="Usuarios" msprop:Generator_RowChangingName="UsuariosRowChanging" msprop:Generator_TableClassName="UsuariosDataTable" msprop:Generator_TableVarName="tableUsuarios">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="UsuarioID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="UsuarioID" msprop:Generator_ColumnPropNameInTable="UsuarioIDColumn" msprop:Generator_ColumnPropNameInRow="UsuarioID" msprop:Generator_ColumnVarNameInTable="columnUsuarioID" type="xs:int" />
-              <xs:element name="Nome" msprop:Generator_UserColumnName="Nome" msprop:Generator_ColumnPropNameInTable="NomeColumn" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnVarNameInTable="columnNome">
+              <xs:element name="DataCadastro" msprop:Generator_UserColumnName="DataCadastro" msprop:Generator_ColumnPropNameInTable="DataCadastroColumn" msprop:Generator_ColumnPropNameInRow="DataCadastro" msprop:Generator_ColumnVarNameInTable="columnDataCadastro" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="UsuarioID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="UsuarioID" msprop:Generator_ColumnPropNameInTable="UsuarioIDColumn" msprop:Generator_ColumnVarNameInTable="columnUsuarioID" msprop:Generator_UserColumnName="UsuarioID" type="xs:int" />
+              <xs:element name="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnPropNameInTable="NomeColumn" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_UserColumnName="Nome">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Email" msprop:Generator_UserColumnName="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnVarNameInTable="columnEmail">
+              <xs:element name="Email" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_ColumnVarNameInTable="columnEmail" msprop:Generator_UserColumnName="Email">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Telefone" msprop:Generator_UserColumnName="Telefone" msprop:Generator_ColumnPropNameInTable="TelefoneColumn" msprop:Generator_ColumnPropNameInRow="Telefone" msprop:Generator_ColumnVarNameInTable="columnTelefone" minOccurs="0">
+              <xs:element name="Telefone" msprop:Generator_ColumnPropNameInRow="Telefone" msprop:Generator_ColumnPropNameInTable="TelefoneColumn" msprop:Generator_ColumnVarNameInTable="columnTelefone" msprop:Generator_UserColumnName="Telefone" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="15" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DataCadastro" msprop:Generator_UserColumnName="DataCadastro" msprop:Generator_ColumnPropNameInTable="DataCadastroColumn" msprop:Generator_ColumnPropNameInRow="DataCadastro" msprop:Generator_ColumnVarNameInTable="columnDataCadastro" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -876,7 +876,6 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
     <xs:appinfo>
       <msdata:Relationship name="FK__Requisico__Funci__4AB81AF0" msdata:parent="Funcionarios" msdata:child="Requisicoes" msdata:parentkey="FuncionarioID" msdata:childkey="FuncionarioID" msprop:Generator_UserParentTable="Funcionarios" msprop:Generator_UserChildTable="Requisicoes" msprop:Generator_RelationVarName="relationFK__Requisico__Funci__4AB81AF0" msprop:Generator_ChildPropName="GetRequisicoesRows" msprop:Generator_UserRelationName="FK__Requisico__Funci__4AB81AF0" msprop:Generator_ParentPropName="FuncionariosRow" />
       <msdata:Relationship name="FK__Requisico__Livro__49C3F6B7" msdata:parent="Livros" msdata:child="Requisicoes" msdata:parentkey="LivroID" msdata:childkey="LivroID" msprop:Generator_UserParentTable="Livros" msprop:Generator_UserChildTable="Requisicoes" msprop:Generator_RelationVarName="relationFK__Requisico__Livro__49C3F6B7" msprop:Generator_ChildPropName="GetRequisicoesRows" msprop:Generator_UserRelationName="FK__Requisico__Livro__49C3F6B7" msprop:Generator_ParentPropName="LivrosRow" />
-      <msdata:Relationship name="FK__Requisico__Usuar__48CFD27E" msdata:parent="Usuarios" msdata:child="Requisicoes" msdata:parentkey="UsuarioID" msdata:childkey="UsuarioID" msprop:Generator_UserParentTable="Usuarios" msprop:Generator_UserChildTable="Requisicoes" msprop:Generator_RelationVarName="relationFK__Requisico__Usuar__48CFD27E" msprop:Generator_ChildPropName="GetRequisicoesRows" msprop:Generator_ParentPropName="UsuariosRow" msprop:Generator_UserRelationName="FK__Requisico__Usuar__48CFD27E" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
