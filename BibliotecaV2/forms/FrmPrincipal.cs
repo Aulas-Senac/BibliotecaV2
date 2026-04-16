@@ -49,7 +49,8 @@ namespace BibliotecaV2.forms
 
         private void btnRequisicoes_Click(object sender, EventArgs e)
         {
-
+            RequisicaoControl requisicaoControl = new RequisicaoControl();
+            AbrirTela(requisicaoControl);
         }
     }
 }
