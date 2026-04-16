@@ -43,7 +43,8 @@ namespace BibliotecaV2.forms
 
         private void btnFuncionarios_Click(object sender, EventArgs e)
         {
-
+            FuncionarioControl funcionarioControl = new FuncionarioControl();
+            AbrirTela(funcionarioControl);
         }
 
         private void btnRequisicoes_Click(object sender, EventArgs e)
