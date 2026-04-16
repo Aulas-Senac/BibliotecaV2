@@ -37,7 +37,8 @@ namespace BibliotecaV2.forms
 
         private void btnLivros_Click(object sender, EventArgs e)
         {
-
+            LivrosControl livrosControl = new LivrosControl();
+            AbrirTela(livrosControl);
         }
 
         private void btnFuncionarios_Click(object sender, EventArgs e)
