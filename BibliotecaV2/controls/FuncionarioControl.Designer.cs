@@ -71,6 +71,7 @@
             this.btnLimpar.TabIndex = 72;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // lblBuscar
             // 
@@ -88,6 +89,7 @@
             this.txtPesquisa.Name = "txtPesquisa";
             this.txtPesquisa.Size = new System.Drawing.Size(313, 20);
             this.txtPesquisa.TabIndex = 70;
+            this.txtPesquisa.TextChanged += new System.EventHandler(this.txtPesquisa_TextChanged);
             // 
             // btnAtualizarLista
             // 
@@ -97,6 +99,7 @@
             this.btnAtualizarLista.TabIndex = 69;
             this.btnAtualizarLista.Text = "Atualizar Lista";
             this.btnAtualizarLista.UseVisualStyleBackColor = true;
+            this.btnAtualizarLista.Click += new System.EventHandler(this.btnAtualizarLista_Click);
             // 
             // btnRemover
             // 
@@ -106,14 +109,17 @@
             this.btnRemover.TabIndex = 68;
             this.btnRemover.Text = "Remover";
             this.btnRemover.UseVisualStyleBackColor = true;
+            this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
             // 
             // lboDados
             // 
             this.lboDados.FormattingEnabled = true;
+            this.lboDados.HorizontalScrollbar = true;
             this.lboDados.Location = new System.Drawing.Point(305, 117);
             this.lboDados.Name = "lboDados";
             this.lboDados.Size = new System.Drawing.Size(313, 212);
             this.lboDados.TabIndex = 67;
+            this.lboDados.SelectedIndexChanged += new System.EventHandler(this.lboDados_SelectedIndexChanged);
             // 
             // lblDataCadastro
             // 
@@ -166,6 +172,7 @@
             this.btnSalvar.TabIndex = 61;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // txtUsuario
             // 
@@ -211,7 +218,6 @@
             this.chkAtivo.TabIndex = 76;
             this.chkAtivo.Text = "Sim";
             this.chkAtivo.UseVisualStyleBackColor = true;
-            this.chkAtivo.CheckedChanged += new System.EventHandler(this.chkAtivo_CheckedChanged);
             // 
             // lblAtivo
             // 
@@ -221,7 +227,6 @@
             this.lblAtivo.Size = new System.Drawing.Size(34, 13);
             this.lblAtivo.TabIndex = 77;
             this.lblAtivo.Text = "Ativo:";
-            this.lblAtivo.Click += new System.EventHandler(this.lblAtivo_Click);
             // 
             // txtEmail
             // 
