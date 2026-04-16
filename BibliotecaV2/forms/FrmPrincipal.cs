@@ -16,5 +16,25 @@ namespace BibliotecaV2.forms
         {
             InitializeComponent();
         }
+
+        private void btnUsuarios_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLivros_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnFuncionarios_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRequisicoes_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
