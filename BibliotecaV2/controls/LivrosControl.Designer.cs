@@ -118,6 +118,7 @@
             // lboDados
             // 
             this.lboDados.FormattingEnabled = true;
+            this.lboDados.HorizontalScrollbar = true;
             this.lboDados.Location = new System.Drawing.Point(268, 75);
             this.lboDados.Margin = new System.Windows.Forms.Padding(2);
             this.lboDados.Name = "lboDados";

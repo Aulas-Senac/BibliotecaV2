@@ -106,6 +106,7 @@
             // lboDados
             // 
             this.lboDados.FormattingEnabled = true;
+            this.lboDados.HorizontalScrollbar = true;
             this.lboDados.Location = new System.Drawing.Point(301, 54);
             this.lboDados.Name = "lboDados";
             this.lboDados.Size = new System.Drawing.Size(313, 277);
