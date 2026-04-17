@@ -15,6 +15,11 @@ namespace BibliotecaV2.controls
 {
     public partial class FuncionarioControl : UserControl
     {
+        #region campos
+
+        private List<FuncionariosRow> _listaCache = new List<FuncionariosRow>();
+
+        #endregion
 
         #region construtores
         public FuncionarioControl()
@@ -32,13 +37,25 @@ namespace BibliotecaV2.controls
         {
             lboDados.Items.Clear();
 
-            FuncionariosTableAdapter funcionariosTable = new FuncionariosTableAdapter();
-
-            var data = funcionariosTable.GetData();
-
-            foreach (var dado in data)
+            using (FuncionariosTableAdapter funcionariosTable = new FuncionariosTableAdapter())
             {
-                lboDados.Items.Add(dado);
+                _listaCache = funcionariosTable.GetData().ToList();
+            }
+
+            FiltrarLista(txtPesquisa.Text);
+        }
+
+        private void FiltrarLista(string termo)
+        {
+            lboDados.Items.Clear();
+
+            var resultado = string.IsNullOrWhiteSpace(termo)
+                            ? _listaCache
+                            : _listaCache.Where(f => f.NomeUsuario.ToLower().Contains(termo.Trim().ToLower())).ToList();
+
+            foreach (var item in resultado)
+            {
+                lboDados.Items.Add(item);
             }
         }
 
@@ -65,27 +82,35 @@ namespace BibliotecaV2.controls
 
         private void ConfigurarComboBox()
         {
-            FuncionariosTableAdapter adapter = new FuncionariosTableAdapter();
-            var data = adapter.GetData();
+            using (FuncionariosTableAdapter adapter = new FuncionariosTableAdapter())
+            {
+                var data = adapter.GetData();
 
-            // Usamos LINQ para pegar apenas a coluna Cargo, remover duplicados e nulos
-            var cargosExistentes = data
+                var cargosExistentes = data
                 .Select(f => f.Cargo)
                 .Distinct()
                 .OrderBy(c => c)
                 .ToList();
 
-            cboCargos.Items.Clear();
-            cboCargos.Items.AddRange(cargosExistentes.ToArray());
+                cboCargos.Items.Clear();
+                cboCargos.Items.AddRange(cargosExistentes.ToArray());
+            }
+            // Usamos LINQ para pegar apenas a coluna Cargo, remover duplicados e nulos
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _listaCache?.Clear();
+                components?.Dispose();
+            }
+            base.Dispose();
         }
 
         #endregion
 
         #region eventos
-        private void btnLimpar_Click(object sender, EventArgs e)
-        {
-            LimparElementos();
-        }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
@@ -97,36 +122,38 @@ namespace BibliotecaV2.controls
                 ultimoLogin = dtpUltimoLogin.Value;
             }
 
-            FuncionariosTableAdapter funcionarioTable = new FuncionariosTableAdapter();
-            // cadastro
-            if (lboDados.SelectedItem == null)
+            using (FuncionariosTableAdapter funcionariosTable = new FuncionariosTableAdapter())
             {
-                funcionarioTable.Insert(
-                    txtUsuario.Text,
-                    txtSenhaHash.Text,
-                    txtNomeCompleto.Text,
-                    cboCargos.Text,
-                    txtEmail.Text,
-                    ultimoLogin,
-                    chkAtivo.Checked
-                );
-            }
-            else // atualização
-            {
-                FuncionariosRow funcionariosRow = lboDados.SelectedItem as FuncionariosRow;
+                // cadastro
+                if (lboDados.SelectedItem == null)
+                {
+                    funcionariosTable.Insert(
+                        txtUsuario.Text,
+                        txtSenhaHash.Text,
+                        txtNomeCompleto.Text,
+                        cboCargos.Text,
+                        txtEmail.Text,
+                        ultimoLogin,
+                        chkAtivo.Checked
+                    );
+                }
+                else // atualização
+                {
+                    FuncionariosRow funcionariosRow = lboDados.SelectedItem as FuncionariosRow;
 
-                if (funcionariosRow == null) return;
+                    if (funcionariosRow == null) return;
 
-                funcionarioTable.Update(
-                    funcionariosRow.FuncionarioID,
-                    txtUsuario.Text,
-                    txtSenhaHash.Text,
-                    txtNomeCompleto.Text,
-                    cboCargos.Text,
-                    txtEmail.Text,
-                    ultimoLogin,
-                    chkAtivo.Checked
-                );
+                    funcionariosTable.Update(
+                        funcionariosRow.FuncionarioID,
+                        txtUsuario.Text,
+                        txtSenhaHash.Text,
+                        txtNomeCompleto.Text,
+                        cboCargos.Text,
+                        txtEmail.Text,
+                        ultimoLogin,
+                        chkAtivo.Checked
+                    );
+                }
             }
             AtualizarLista();
             LimparElementos();
@@ -134,15 +161,14 @@ namespace BibliotecaV2.controls
 
         private void btnRemover_Click(object sender, EventArgs e)
         {
-            if (lboDados.SelectedItem == null) return;
-
             FuncionariosRow funcionariosRow = lboDados.SelectedItem as FuncionariosRow;
 
             if (funcionariosRow == null) return;
 
-            FuncionariosTableAdapter funcionariosTable = new FuncionariosTableAdapter();
-
-            funcionariosTable.Delete(funcionariosRow.FuncionarioID);
+            using (FuncionariosTableAdapter funcionariosTable = new FuncionariosTableAdapter())
+            {
+                funcionariosTable.Delete(funcionariosRow.FuncionarioID);
+            }
 
             AtualizarLista();
             LimparElementos();
@@ -151,6 +177,11 @@ namespace BibliotecaV2.controls
         private void btnAtualizarLista_Click(object sender, EventArgs e)
         {
             AtualizarLista();
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            LimparElementos();
         }
 
         private void lboDados_SelectedIndexChanged(object sender, EventArgs e)
@@ -180,28 +211,7 @@ namespace BibliotecaV2.controls
 
         private void txtPesquisa_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtPesquisa.Text))
-            {
-                AtualizarLista();
-                return;
-            }
-
-            string termo = txtPesquisa.Text.Trim().ToLower();
-
-            FuncionariosTableAdapter dados = new FuncionariosTableAdapter();
-
-            var listaUsuarios = dados.GetData().ToList();
-
-            var filtrados = listaUsuarios
-                .Where(f => f.NomeUsuario.ToLower().Contains(termo))
-                .ToList();
-
-            lboDados.Items.Clear();
-
-            foreach (var usuario in filtrados)
-            {
-                lboDados.Items.Add(usuario);
-            }
+            FiltrarLista(txtPesquisa.Text);
         }
 
         #endregion
