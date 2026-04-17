@@ -14,13 +14,16 @@ namespace BibliotecaV2.controls
 {
     public partial class UsuarioControl : UserControl
     {
+        #region campos
+        private List<UsuariosRow> _listaCache = new List<UsuariosRow>();
+        #endregion
 
         #region construtores
         public UsuarioControl()
         {
             InitializeComponent();
             AtualizarLista();
-            
+
             dtpDataCadastro.Format = DateTimePickerFormat.Custom;
             dtpDataCadastro.CustomFormat = "dd/MM/yyyy HH:mm:ss";
         }
@@ -29,15 +32,25 @@ namespace BibliotecaV2.controls
         #region metodos
         private void AtualizarLista()
         {
+            using (UsuariosTableAdapter usuariosTable = new UsuariosTableAdapter())
+            {
+                _listaCache = usuariosTable.GetData().ToList();
+            }
+
+            FiltrarLista(txtPesquisa.Text);
+        }
+
+        private void FiltrarLista(string termo)
+        {
             lboDados.Items.Clear();
 
-            UsuariosTableAdapter usuariosTable = new UsuariosTableAdapter();
+            var resultado = string.IsNullOrWhiteSpace(termo)
+                            ? _listaCache
+                            : _listaCache.Where(u => u.Nome.ToLower().Contains(termo.Trim().ToLower())).ToList();
 
-            var data = usuariosTable.GetData();
-
-            foreach (var dado in data)
+            foreach (var item in resultado)
             {
-                lboDados.Items.Add(dado);
+                lboDados.Items.Add(item);
             }
         }
 
@@ -49,31 +62,39 @@ namespace BibliotecaV2.controls
             lboDados.SelectedIndex = -1;
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _listaCache?.Clear();
+                components?.Dispose();
+            }
+            base.Dispose();
+        }
+
         #endregion
 
         #region eventos
-        private void btnLimpar_Click(object sender, EventArgs e)
-        {
-            LimparElementos();
-        }
-
+  
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             // Validar campos e retornar caso falso
 
-            UsuariosTableAdapter usuarioTable = new UsuariosTableAdapter();
-            // cadastro
-            if (lboDados.SelectedItem == null)
+            using (var usuarioTable = new UsuariosTableAdapter())
             {
-                usuarioTable.Insert(txtNome.Text, txtEmail.Text, txtTelefone.Text);
-            }
-            else // atualização
-            {
-                UsuariosRow usuariosRow = lboDados.SelectedItem as UsuariosRow;
+                // cadastro
+                if (lboDados.SelectedItem == null)
+                {
+                    usuarioTable.Insert(txtNome.Text, txtEmail.Text, txtTelefone.Text);
+                }
+                else // atualização
+                {
+                    UsuariosRow usuariosRow = lboDados.SelectedItem as UsuariosRow;
 
-                if (usuariosRow == null) return;
+                    if (usuariosRow == null) return;
 
-                usuarioTable.Update(usuariosRow.UsuarioID, txtNome.Text, txtEmail.Text, txtTelefone.Text);
+                    usuarioTable.Update(usuariosRow.UsuarioID, txtNome.Text, txtEmail.Text, txtTelefone.Text);
+                }
             }
             AtualizarLista();
             LimparElementos();
@@ -81,15 +102,13 @@ namespace BibliotecaV2.controls
 
         private void btnRemover_Click(object sender, EventArgs e)
         {
-            if (lboDados.SelectedItem == null) return;
-
             UsuariosRow usuariosRow = lboDados.SelectedItem as UsuariosRow;
-
             if (usuariosRow == null) return;
 
-            UsuariosTableAdapter usuariosTable = new UsuariosTableAdapter();
-
-            usuariosTable.Delete(usuariosRow.UsuarioID);
+            using (UsuariosTableAdapter usuariosTable = new UsuariosTableAdapter())
+            {
+                usuariosTable.Delete(usuariosRow.UsuarioID);
+            }
 
             AtualizarLista();
             LimparElementos();
@@ -98,6 +117,11 @@ namespace BibliotecaV2.controls
         private void btnAtualizarLista_Click(object sender, EventArgs e)
         {
             AtualizarLista();
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            LimparElementos();
         }
 
         private void lboDados_SelectedIndexChanged(object sender, EventArgs e)
@@ -114,28 +138,7 @@ namespace BibliotecaV2.controls
 
         private void txtPesquisa_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtPesquisa.Text))
-            {
-                AtualizarLista();
-                return;
-            }
-
-            string termo = txtPesquisa.Text.Trim().ToLower();
-
-            UsuariosTableAdapter dados = new UsuariosTableAdapter();
-
-            var listaUsuarios = dados.GetData().ToList();
-
-            var filtrados = listaUsuarios
-                .Where(u => u.Nome.ToLower().Contains(termo))
-                .ToList();
-
-            lboDados.Items.Clear();
-
-            foreach (var usuario in filtrados)
-            {
-                lboDados.Items.Add(usuario);
-            }
+            FiltrarLista(txtPesquisa.Text);
         }
 
         #endregion
