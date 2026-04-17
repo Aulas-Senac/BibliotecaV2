@@ -15,155 +15,145 @@ namespace BibliotecaV2.controls
     public partial class LivrosControl : UserControl
     {
 
+        #region campos
+
+        private List<LivrosRow> _listaCache = new List<LivrosRow>();
+        
+        #endregion
+
+        #region construtores
+
         public LivrosControl()
         {
             InitializeComponent();
             AtualizarLista();
         }
 
+        #endregion
+
+        #region metodos
         private void AtualizarLista()
         {
             lboDados.Items.Clear();
-            LivrosTableAdapter LivrosDados = new LivrosTableAdapter();
-            var dados = from linha in LivrosDados.GetData()
-                        select linha;
-            foreach (LivrosRow dado in dados) lboDados.Items.Add(dado);
-        }
-
-        private void limparElementos()
-        {
-            txtTitulo.Text = "";
-            txtAutor.Text = "";
-            txtEditora.Text = "";
-            txtGenero.Text = "";
-            txtISBN.Text = "";
-            txtQuantidade.Text = "";
-        }
-
-        private void lboLivros_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (lboDados.SelectedItem == null) return;
-            LivrosRow livro = lboDados.SelectedItem as LivrosRow;
-            if (livro == null) return;
-            btnAjuste.Text = "Atualizar";
-            btnAcoes.Text = "Excluir";
-            txtTitulo.Text = livro.Titulo;
-            txtGenero.Text = livro.Genero;
-            txtQuantidade.Text = livro.QuantidadeDisponivel.ToString();
-            txtEditora.Text = livro.Editora;
-            txtISBN.Text = livro.ISBN;
-            txtAutor.Text = livro.Autor;
-        }
-
-        private void btnAcoes_Click(object sender, EventArgs e)
-        {
-            if (btnAcoes.Text == "Excluir")
+            using (LivrosTableAdapter livrosTable = new LivrosTableAdapter())
             {
-                if (lboDados.SelectedItem == null) return;
-                LivrosRow livro = lboDados.SelectedItem as LivrosRow;
-                if (livro == null) return;
-                LivrosTableAdapter livros = new LivrosTableAdapter();
-                //livros.Delete(livro.LivroID);
-                AtualizarLista();
-                limparElementos();
-                btnAcoes.Text = "Atualizar Lista";
-                btnAjuste.Text = "Cadastrar";
+                _listaCache = livrosTable.GetData().ToList();
             }
-            else
+
+            FiltrarLista(txtPesquisa.Text);
+        }
+
+        private void FiltrarLista(string termo)
+        {
+            lboDados.Items.Clear();
+
+            var resultado = string.IsNullOrWhiteSpace(termo)
+                            ? _listaCache
+                            : _listaCache.Where(l => l.Titulo.ToLower().Contains(termo.Trim().ToLower())).ToList();
+
+            foreach (var item in resultado)
             {
-                AtualizarLista();
+                lboDados.Items.Add(item);
             }
         }
 
-        private void btnAjuste_Click(object sender, EventArgs e)
+        private void LimparElementos()
         {
-            if (btnAjuste.Text == "Cadastrar")
+            txtTitulo.Clear();
+            txtAutor.Clear();
+            txtEditora.Clear();
+            txtGenero.Clear();
+            txtISBN.Clear();
+            txtQuantidade.Clear();
+            lboDados.SelectedIndex = -1;
+        }
+
+        #endregion
+
+        #region eventos
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            // Validar campos e retornar caso falso
+
+            using (var livrosTable = new LivrosTableAdapter())
             {
-                string titulo = txtTitulo.Text;
-                string autor = txtAutor.Text;
-                string genero = txtGenero.Text;
-                string editora = txtEditora.Text;
-                string isbn = txtISBN.Text;
-                try
-                {
-                    int quantidade = int.Parse(txtQuantidade.Text);
-                    LivrosTableAdapter livros = new LivrosTableAdapter();
-                    //livros.Insert(titulo, genero, autor, editora, isbn, quantidade);
-                    AtualizarLista();
-                    limparElementos();
-                }
-                catch
-                {
-                    MessageBox.Show("Erro de código");
-                }
-            }
-            else
-            {
+                // cadastro
                 if (lboDados.SelectedItem == null)
                 {
-                    lboDados.ClearSelected();
-                    AtualizarLista();
-                    limparElementos();
-                    return;
+                    if (int.TryParse(txtQuantidade.Text, out int quantidade))
+                    {
+                        livrosTable.Insert(txtTitulo.Text, txtGenero.Text, txtAutor.Text, txtEditora.Text, txtISBN.Text, quantidade);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Quantidade inválida.");
+                        return;
+                    }
                 }
-                LivrosRow livro = lboDados.SelectedItem as LivrosRow;
-                if (livro == null) return;
-                string titulo = txtTitulo.Text;
-                string autor = txtAutor.Text;
-                string genero = txtGenero.Text;
-                string editora = txtEditora.Text;
-                string isbn = txtISBN.Text;
-                try
+                else // atualização
                 {
-                    int quantidade = int.Parse(txtQuantidade.Text);
-                    LivrosTableAdapter livros = new LivrosTableAdapter();
-                    //livros.Update(livro.LivroID, titulo, genero, autor, editora, isbn, quantidade);
-                    AtualizarLista();
-                    limparElementos();
+                    LivrosRow livro = lboDados.SelectedItem as LivrosRow;
 
-                    btnAcoes.Text = "Atualizar Lista";
-                    btnAjuste.Text = "Cadastrar";
-                }
-                catch
-                {
-                    MessageBox.Show("Erro de código");
+                    if (livro == null) return;
+
+                    if (int.TryParse(txtQuantidade.Text, out int quantidade))
+                    {
+                        livrosTable.Update(livro.LivroID, txtTitulo.Text, txtGenero.Text, txtAutor.Text, txtEditora.Text, txtISBN.Text, quantidade);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Quantidade inválida.");
+                        return;
+                    }
                 }
             }
+            AtualizarLista();
+            LimparElementos();
+        }
+
+        private void btnRemover_Click(object sender, EventArgs e)
+        {
+            LivrosRow livrosRow = lboDados.SelectedItem as LivrosRow;
+            if (livrosRow == null) return;
+
+            using (LivrosTableAdapter livrosTable = new LivrosTableAdapter())
+            {
+                livrosTable.Delete(livrosRow.LivroID);
+            }
+
+            AtualizarLista();
+            LimparElementos();
+        }
+
+        private void btnAtualizarLista_Click(object sender, EventArgs e)
+        {
+            AtualizarLista();
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-            lboDados.ClearSelected();
-            AtualizarLista();
-            limparElementos();
-            btnAcoes.Text = "Atualizar Lista";
-            btnAjuste.Text = "Cadastrar";
+            LimparElementos();
+        }
+
+        private void lboLivros_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LivrosRow livrosRow = lboDados.SelectedItem as LivrosRow;
+
+            if (livrosRow == null) return;
+
+            txtTitulo.Text = livrosRow.Titulo;
+            txtGenero.Text = livrosRow.Genero;
+            txtQuantidade.Text = livrosRow.QuantidadeDisponivel.ToString();
+            txtEditora.Text = livrosRow.Editora;
+            txtISBN.Text = livrosRow.ISBN;
+            txtAutor.Text = livrosRow.Autor;
         }
 
         private void txtPesquisa_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtPesquisa.Text))
-            {
-                AtualizarLista();
-                return;
-            }
-
-            string termo = txtPesquisa.Text.Trim().ToLower();
-
-            LivrosTableAdapter dados = new LivrosTableAdapter();
-
-            var listaUsuarios = dados.GetData().ToList();
-
-            var filtrados = listaUsuarios
-                .Where(l => l.Titulo.ToLower().Contains(termo))
-                .ToList();
-
-            lboDados.Items.Clear();
-
-            foreach (var livro in filtrados)
-            {
-                lboDados.Items.Add(livro);
-            }
+            FiltrarLista(txtPesquisa.Text);
         }
+        #endregion
     }
 }
