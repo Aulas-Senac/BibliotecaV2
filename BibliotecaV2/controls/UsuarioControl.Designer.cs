@@ -17,6 +17,8 @@
             {
                 components.Dispose();
             }
+            // Limpa o cache de dados
+            _listaCache?.Clear();
             base.Dispose(disposing);
         }
 

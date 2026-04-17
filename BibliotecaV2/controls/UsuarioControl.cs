@@ -62,16 +62,6 @@ namespace BibliotecaV2.controls
             lboDados.SelectedIndex = -1;
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _listaCache?.Clear();
-                components?.Dispose();
-            }
-            base.Dispose();
-        }
-
         #endregion
 
         #region eventos

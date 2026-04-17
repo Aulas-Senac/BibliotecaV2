@@ -98,16 +98,6 @@ namespace BibliotecaV2.controls
             // Usamos LINQ para pegar apenas a coluna Cargo, remover duplicados e nulos
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _listaCache?.Clear();
-                components?.Dispose();
-            }
-            base.Dispose();
-        }
-
         #endregion
 
         #region eventos

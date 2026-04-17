@@ -17,9 +17,10 @@
             {
                 components.Dispose();
             }
+            // Limpa o cache de dados
+            _listaCache?.Clear();
             base.Dispose(disposing);
         }
-
         #region Código gerado pelo Designer de Componentes
 
         /// <summary> 
