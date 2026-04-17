@@ -22,8 +22,11 @@ namespace BibliotecaV2.forms
         #region metodos
 
         private void AbrirTela(Control tela) {
-            pnlConteudo.Controls.Clear();
+            // Descarta todos os controles anteriores
+            foreach (Control c in pnlConteudo.Controls)
+                c.Dispose();
 
+            pnlConteudo.Controls.Clear();
             tela.Dock = DockStyle.Fill;
             pnlConteudo.Controls.Add(tela);
         }
