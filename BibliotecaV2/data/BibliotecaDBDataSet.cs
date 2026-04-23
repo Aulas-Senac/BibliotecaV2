@@ -1,4 +1,10 @@
-﻿using System.Runtime.Remoting.Messaging;
+﻿using BibliotecaV2.data.BibliotecaDBDataSetTableAdapters;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Runtime.Remoting.Messaging;
+using System.Security;
+using System.Security.Cryptography;
 
 namespace BibliotecaV2.data
 {
@@ -6,8 +12,28 @@ namespace BibliotecaV2.data
 
     partial class BibliotecaDBDataSet
     {
-        partial class UsuariosDataTable
+        partial class RequisicoesRow
         {
+            public override string ToString()
+            {
+                UsuariosTableAdapter usuariosTable = new UsuariosTableAdapter();
+                List<UsuariosRow> usuarios = usuariosTable.GetData().ToList();
+
+                FuncionariosTableAdapter funcionariosTable = new FuncionariosTableAdapter();
+                List<FuncionariosRow> funcionarios = funcionariosTable.GetData().ToList();
+
+                LivrosTableAdapter livrosTable = new LivrosTableAdapter();
+                List<LivrosRow> livros = livrosTable.GetData().ToList();
+
+
+                UsuariosRow usuarioEncontrado = usuarios.FirstOrDefault(u => u.UsuarioID == this.UsuarioID);
+                LivrosRow livroEncontrado = livros.FirstOrDefault(l => l.LivroID == this.LivroID);
+                FuncionariosRow funcionarioEncontrado = funcionarios.FirstOrDefault(f => f.FuncionarioID == this.FuncionarioID);
+
+                string dataDevolucao = this.IsDataDevolucaoNull() ? "Devolvido" : this.DataDevolucao.ToString("dd/MM/yyyy HH:mm:ss");
+
+                return $"{usuarioEncontrado.Nome} | {livroEncontrado.Titulo} | {funcionarioEncontrado.NomeCompleto} | {this.DataRequisicao} |{dataDevolucao} | {this.Status}";
+            }
         }
 
         partial class FuncionariosRow

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cboCargos = new System.Windows.Forms.ComboBox();
+            this.cboFuncionario = new System.Windows.Forms.ComboBox();
             this.lblFuncionario = new System.Windows.Forms.Label();
             this.dtpDataDevolucao = new System.Windows.Forms.DateTimePicker();
             this.lblDataDevolucao = new System.Windows.Forms.Label();
@@ -41,19 +41,21 @@
             this.lboDados = new System.Windows.Forms.ListBox();
             this.lblDataRequisicao = new System.Windows.Forms.Label();
             this.btnSalvar = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboUsuario = new System.Windows.Forms.ComboBox();
             this.lblUsuario = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cboLivro = new System.Windows.Forms.ComboBox();
             this.lblLivro = new System.Windows.Forms.Label();
+            this.cboStatus = new System.Windows.Forms.ComboBox();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // cboCargos
+            // cboFuncionario
             // 
-            this.cboCargos.FormattingEnabled = true;
-            this.cboCargos.Location = new System.Drawing.Point(28, 132);
-            this.cboCargos.Name = "cboCargos";
-            this.cboCargos.Size = new System.Drawing.Size(256, 21);
-            this.cboCargos.TabIndex = 104;
+            this.cboFuncionario.FormattingEnabled = true;
+            this.cboFuncionario.Location = new System.Drawing.Point(28, 132);
+            this.cboFuncionario.Name = "cboFuncionario";
+            this.cboFuncionario.Size = new System.Drawing.Size(256, 21);
+            this.cboFuncionario.TabIndex = 104;
             // 
             // lblFuncionario
             // 
@@ -93,7 +95,7 @@
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(28, 266);
+            this.btnLimpar.Location = new System.Drawing.Point(28, 324);
             this.btnLimpar.Margin = new System.Windows.Forms.Padding(2);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(75, 23);
@@ -140,10 +142,11 @@
             // 
             this.lboDados.FormattingEnabled = true;
             this.lboDados.HorizontalScrollbar = true;
-            this.lboDados.Location = new System.Drawing.Point(305, 67);
+            this.lboDados.Location = new System.Drawing.Point(305, 63);
             this.lboDados.Name = "lboDados";
             this.lboDados.Size = new System.Drawing.Size(313, 264);
             this.lboDados.TabIndex = 90;
+            this.lboDados.SelectedIndexChanged += new System.EventHandler(this.lboDados_SelectedIndexChanged);
             // 
             // lblDataRequisicao
             // 
@@ -156,20 +159,21 @@
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(108, 266);
+            this.btnSalvar.Location = new System.Drawing.Point(108, 324);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(176, 23);
             this.btnSalvar.TabIndex = 84;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
-            // comboBox1
+            // cboUsuario
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(28, 37);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(256, 21);
-            this.comboBox1.TabIndex = 106;
+            this.cboUsuario.FormattingEnabled = true;
+            this.cboUsuario.Location = new System.Drawing.Point(28, 37);
+            this.cboUsuario.Name = "cboUsuario";
+            this.cboUsuario.Size = new System.Drawing.Size(256, 21);
+            this.cboUsuario.TabIndex = 106;
             // 
             // lblUsuario
             // 
@@ -180,13 +184,13 @@
             this.lblUsuario.TabIndex = 105;
             this.lblUsuario.Text = "Usuario:";
             // 
-            // comboBox2
+            // cboLivro
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(28, 83);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(256, 21);
-            this.comboBox2.TabIndex = 108;
+            this.cboLivro.FormattingEnabled = true;
+            this.cboLivro.Location = new System.Drawing.Point(28, 83);
+            this.cboLivro.Name = "cboLivro";
+            this.cboLivro.Size = new System.Drawing.Size(256, 21);
+            this.cboLivro.TabIndex = 108;
             // 
             // lblLivro
             // 
@@ -197,15 +201,34 @@
             this.lblLivro.TabIndex = 107;
             this.lblLivro.Text = "Livro:";
             // 
+            // cboStatus
+            // 
+            this.cboStatus.FormattingEnabled = true;
+            this.cboStatus.Location = new System.Drawing.Point(28, 286);
+            this.cboStatus.Name = "cboStatus";
+            this.cboStatus.Size = new System.Drawing.Size(256, 21);
+            this.cboStatus.TabIndex = 109;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(25, 270);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(40, 13);
+            this.lblStatus.TabIndex = 110;
+            this.lblStatus.Text = "Status:";
+            // 
             // RequisicaoControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.lblStatus);
+            this.Controls.Add(this.cboStatus);
+            this.Controls.Add(this.cboLivro);
             this.Controls.Add(this.lblLivro);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cboUsuario);
             this.Controls.Add(this.lblUsuario);
-            this.Controls.Add(this.cboCargos);
+            this.Controls.Add(this.cboFuncionario);
             this.Controls.Add(this.lblFuncionario);
             this.Controls.Add(this.dtpDataDevolucao);
             this.Controls.Add(this.lblDataDevolucao);
@@ -227,7 +250,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox cboCargos;
+        private System.Windows.Forms.ComboBox cboFuncionario;
         private System.Windows.Forms.Label lblFuncionario;
         private System.Windows.Forms.DateTimePicker dtpDataDevolucao;
         private System.Windows.Forms.Label lblDataDevolucao;
@@ -240,9 +263,11 @@
         private System.Windows.Forms.ListBox lboDados;
         private System.Windows.Forms.Label lblDataRequisicao;
         private System.Windows.Forms.Button btnSalvar;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboUsuario;
         private System.Windows.Forms.Label lblUsuario;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cboLivro;
         private System.Windows.Forms.Label lblLivro;
+        private System.Windows.Forms.ComboBox cboStatus;
+        private System.Windows.Forms.Label lblStatus;
     }
 }

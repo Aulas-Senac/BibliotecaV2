@@ -44,6 +44,8 @@ namespace BibliotecaV2.data {
         
         private global::System.Data.DataRelation relationFK__Requisico__Livro__49C3F6B7;
         
+        private global::System.Data.DataRelation relationFK__Requisico__Usuar__48CFD27E;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -368,6 +370,7 @@ namespace BibliotecaV2.data {
             }
             this.relationFK__Requisico__Funci__4AB81AF0 = this.Relations["FK__Requisico__Funci__4AB81AF0"];
             this.relationFK__Requisico__Livro__49C3F6B7 = this.Relations["FK__Requisico__Livro__49C3F6B7"];
+            this.relationFK__Requisico__Usuar__48CFD27E = this.Relations["FK__Requisico__Usuar__48CFD27E"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -402,6 +405,10 @@ namespace BibliotecaV2.data {
                         this.tableLivros.LivroIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableRequisicoes.LivroIDColumn}, false);
             this.Relations.Add(this.relationFK__Requisico__Livro__49C3F6B7);
+            this.relationFK__Requisico__Usuar__48CFD27E = new global::System.Data.DataRelation("FK__Requisico__Usuar__48CFD27E", new global::System.Data.DataColumn[] {
+                        this.tableUsuarios.UsuarioIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableRequisicoes.UsuarioIDColumn}, false);
+            this.Relations.Add(this.relationFK__Requisico__Usuar__48CFD27E);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1433,16 +1440,19 @@ namespace BibliotecaV2.data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RequisicoesRow AddRequisicoesRow(int UsuarioID, LivrosRow parentLivrosRowByFK__Requisico__Livro__49C3F6B7, FuncionariosRow parentFuncionariosRowByFK__Requisico__Funci__4AB81AF0, System.DateTime DataRequisicao, System.DateTime DataDevolucao, string Status) {
+            public RequisicoesRow AddRequisicoesRow(UsuariosRow parentUsuariosRowByFK__Requisico__Usuar__48CFD27E, LivrosRow parentLivrosRowByFK__Requisico__Livro__49C3F6B7, FuncionariosRow parentFuncionariosRowByFK__Requisico__Funci__4AB81AF0, System.DateTime DataRequisicao, System.DateTime DataDevolucao, string Status) {
                 RequisicoesRow rowRequisicoesRow = ((RequisicoesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        UsuarioID,
+                        null,
                         null,
                         null,
                         DataRequisicao,
                         DataDevolucao,
                         Status};
+                if ((parentUsuariosRowByFK__Requisico__Usuar__48CFD27E != null)) {
+                    columnValuesArray[1] = parentUsuariosRowByFK__Requisico__Usuar__48CFD27E[0];
+                }
                 if ((parentLivrosRowByFK__Requisico__Livro__49C3F6B7 != null)) {
                     columnValuesArray[2] = parentLivrosRowByFK__Requisico__Livro__49C3F6B7[0];
                 }
@@ -1649,8 +1659,6 @@ namespace BibliotecaV2.data {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class UsuariosDataTable : global::System.Data.TypedTableBase<UsuariosRow> {
             
-            private global::System.Data.DataColumn columnDataCadastro;
-            
             private global::System.Data.DataColumn columnUsuarioID;
             
             private global::System.Data.DataColumn columnNome;
@@ -1658,6 +1666,8 @@ namespace BibliotecaV2.data {
             private global::System.Data.DataColumn columnEmail;
             
             private global::System.Data.DataColumn columnTelefone;
+            
+            private global::System.Data.DataColumn columnDataCadastro;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -1694,14 +1704,6 @@ namespace BibliotecaV2.data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn DataCadastroColumn {
-                get {
-                    return this.columnDataCadastro;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn UsuarioIDColumn {
                 get {
                     return this.columnUsuarioID;
@@ -1729,6 +1731,14 @@ namespace BibliotecaV2.data {
             public global::System.Data.DataColumn TelefoneColumn {
                 get {
                     return this.columnTelefone;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DataCadastroColumn {
+                get {
+                    return this.columnDataCadastro;
                 }
             }
             
@@ -1769,14 +1779,14 @@ namespace BibliotecaV2.data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public UsuariosRow AddUsuariosRow(System.DateTime DataCadastro, string Nome, string Email, string Telefone) {
+            public UsuariosRow AddUsuariosRow(string Nome, string Email, string Telefone, System.DateTime DataCadastro) {
                 UsuariosRow rowUsuariosRow = ((UsuariosRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        DataCadastro,
                         null,
                         Nome,
                         Email,
-                        Telefone};
+                        Telefone,
+                        DataCadastro};
                 rowUsuariosRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowUsuariosRow);
                 return rowUsuariosRow;
@@ -1806,18 +1816,16 @@ namespace BibliotecaV2.data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnDataCadastro = base.Columns["DataCadastro"];
                 this.columnUsuarioID = base.Columns["UsuarioID"];
                 this.columnNome = base.Columns["Nome"];
                 this.columnEmail = base.Columns["Email"];
                 this.columnTelefone = base.Columns["Telefone"];
+                this.columnDataCadastro = base.Columns["DataCadastro"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnDataCadastro = new global::System.Data.DataColumn("DataCadastro", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDataCadastro);
                 this.columnUsuarioID = new global::System.Data.DataColumn("UsuarioID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUsuarioID);
                 this.columnNome = new global::System.Data.DataColumn("Nome", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1826,6 +1834,8 @@ namespace BibliotecaV2.data {
                 base.Columns.Add(this.columnEmail);
                 this.columnTelefone = new global::System.Data.DataColumn("Telefone", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTelefone);
+                this.columnDataCadastro = new global::System.Data.DataColumn("DataCadastro", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDataCadastro);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnUsuarioID}, true));
                 this.columnUsuarioID.AutoIncrement = true;
@@ -3822,6 +3832,17 @@ namespace BibliotecaV2.data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public UsuariosRow UsuariosRow {
+                get {
+                    return ((UsuariosRow)(this.GetParentRow(this.Table.ParentRelations["FK__Requisico__Usuar__48CFD27E"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__Requisico__Usuar__48CFD27E"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsFuncionarioIDNull() {
                 return this.IsNull(this.tableRequisicoes.FuncionarioIDColumn);
             }
@@ -3869,22 +3890,6 @@ namespace BibliotecaV2.data {
             internal UsuariosRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
                 this.tableUsuarios = ((UsuariosDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public System.DateTime DataCadastro {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableUsuarios.DataCadastroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("O valor da coluna \'DataCadastro\' na tabela \'Usuarios\' é DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableUsuarios.DataCadastroColumn] = value;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3938,14 +3943,18 @@ namespace BibliotecaV2.data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsDataCadastroNull() {
-                return this.IsNull(this.tableUsuarios.DataCadastroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetDataCadastroNull() {
-                this[this.tableUsuarios.DataCadastroColumn] = global::System.Convert.DBNull;
+            public System.DateTime DataCadastro {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableUsuarios.DataCadastroColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("O valor da coluna \'DataCadastro\' na tabela \'Usuarios\' é DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUsuarios.DataCadastroColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3958,6 +3967,29 @@ namespace BibliotecaV2.data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetTelefoneNull() {
                 this[this.tableUsuarios.TelefoneColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsDataCadastroNull() {
+                return this.IsNull(this.tableUsuarios.DataCadastroColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetDataCadastroNull() {
+                this[this.tableUsuarios.DataCadastroColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public RequisicoesRow[] GetRequisicoesRows() {
+                if ((this.Table.ChildRelations["FK__Requisico__Usuar__48CFD27E"] == null)) {
+                    return new RequisicoesRow[0];
+                }
+                else {
+                    return ((RequisicoesRow[])(base.GetChildRows(this.Table.ChildRelations["FK__Requisico__Usuar__48CFD27E"])));
+                }
             }
         }
         
@@ -5675,51 +5707,29 @@ namespace BibliotecaV2.data.BibliotecaDBDataSetTableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Requisicoes] WHERE (([RequisicaoID] = @Original_RequisicaoID) AND ([UsuarioID] = @Original_UsuarioID) AND ([LivroID] = @Original_LivroID) AND ((@IsNull_FuncionarioID = 1 AND [FuncionarioID] IS NULL) OR ([FuncionarioID] = @Original_FuncionarioID)) AND ((@IsNull_DataRequisicao = 1 AND [DataRequisicao] IS NULL) OR ([DataRequisicao] = @Original_DataRequisicao)) AND ((@IsNull_DataDevolucao = 1 AND [DataDevolucao] IS NULL) OR ([DataDevolucao] = @Original_DataDevolucao)) AND ([Status] = @Original_Status))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RequisicaoID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RequisicaoID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UsuarioID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UsuarioID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LivroID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LivroID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_FuncionarioID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FuncionarioID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FuncionarioID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FuncionarioID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DataRequisicao", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DataRequisicao", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DataRequisicao", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DataRequisicao", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DataDevolucao", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DataDevolucao", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DataDevolucao", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DataDevolucao", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Status", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.CommandText = "dbo.DeletarRequisicao";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, "RequisicaoID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Requisicoes] ([UsuarioID], [LivroID], [FuncionarioID], [DataRequisicao], [DataDevolucao], [Status]) VALUES (@UsuarioID, @LivroID, @FuncionarioID, @DataRequisicao, @DataDevolucao, @Status);
-SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevolucao, Status FROM Requisicoes WHERE (RequisicaoID = SCOPE_IDENTITY())";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UsuarioID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UsuarioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LivroID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LivroID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FuncionarioID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FuncionarioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DataRequisicao", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DataRequisicao", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DataDevolucao", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DataDevolucao", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Status", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.CommandText = "dbo.InserirRequisicao";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UsuarioID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, "UsuarioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LivroID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, "LivroID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FuncionarioID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, "FuncionarioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Requisicoes] SET [UsuarioID] = @UsuarioID, [LivroID] = @LivroID, [FuncionarioID] = @FuncionarioID, [DataRequisicao] = @DataRequisicao, [DataDevolucao] = @DataDevolucao, [Status] = @Status WHERE (([RequisicaoID] = @Original_RequisicaoID) AND ([UsuarioID] = @Original_UsuarioID) AND ([LivroID] = @Original_LivroID) AND ((@IsNull_FuncionarioID = 1 AND [FuncionarioID] IS NULL) OR ([FuncionarioID] = @Original_FuncionarioID)) AND ((@IsNull_DataRequisicao = 1 AND [DataRequisicao] IS NULL) OR ([DataRequisicao] = @Original_DataRequisicao)) AND ((@IsNull_DataDevolucao = 1 AND [DataDevolucao] IS NULL) OR ([DataDevolucao] = @Original_DataDevolucao)) AND ([Status] = @Original_Status));
-SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevolucao, Status FROM Requisicoes WHERE (RequisicaoID = @RequisicaoID)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UsuarioID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UsuarioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LivroID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LivroID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FuncionarioID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FuncionarioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DataRequisicao", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DataRequisicao", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DataDevolucao", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DataDevolucao", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Status", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RequisicaoID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RequisicaoID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UsuarioID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UsuarioID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LivroID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LivroID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_FuncionarioID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FuncionarioID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FuncionarioID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FuncionarioID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DataRequisicao", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DataRequisicao", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DataRequisicao", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DataRequisicao", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DataDevolucao", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DataDevolucao", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DataDevolucao", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DataDevolucao", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Status", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RequisicaoID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "RequisicaoID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.CommandText = "dbo.AtualizarRequisicao";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RequisicaoID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, "RequisicaoID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UsuarioID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, "UsuarioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LivroID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, "LivroID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FuncionarioID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, "FuncionarioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DataDevolucao", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, "DataDevolucao", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Status", global::System.Data.SqlDbType.NVarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5735,9 +5745,9 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevol" +
-                "ucao, Status FROM dbo.Requisicoes";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].CommandText = "dbo.ObterRequisicao";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5797,39 +5807,12 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_RequisicaoID, int Original_UsuarioID, int Original_LivroID, global::System.Nullable<int> Original_FuncionarioID, global::System.Nullable<global::System.DateTime> Original_DataRequisicao, global::System.Nullable<global::System.DateTime> Original_DataDevolucao, string Original_Status) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_RequisicaoID));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_UsuarioID));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_LivroID));
-            if ((Original_FuncionarioID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_FuncionarioID.Value));
+        public virtual int Delete(global::System.Nullable<int> Id) {
+            if ((Id.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Id.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((Original_DataRequisicao.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((System.DateTime)(Original_DataRequisicao.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((Original_DataDevolucao.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((System.DateTime)(Original_DataDevolucao.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Status == null)) {
-                throw new global::System.ArgumentNullException("Original_Status");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_Status));
+                this.Adapter.DeleteCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -5851,32 +5834,24 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int UsuarioID, int LivroID, global::System.Nullable<int> FuncionarioID, global::System.Nullable<global::System.DateTime> DataRequisicao, global::System.Nullable<global::System.DateTime> DataDevolucao, string Status) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(UsuarioID));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(LivroID));
-            if ((FuncionarioID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(FuncionarioID.Value));
+        public virtual int Insert(global::System.Nullable<int> UsuarioID, global::System.Nullable<int> LivroID, global::System.Nullable<int> FuncionarioID) {
+            if ((UsuarioID.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(UsuarioID.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((LivroID.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(LivroID.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((DataRequisicao.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(DataRequisicao.Value));
+            if ((FuncionarioID.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((int)(FuncionarioID.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((DataDevolucao.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(DataDevolucao.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((Status == null)) {
-                throw new global::System.ArgumentNullException("Status");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(Status));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -5898,67 +5873,43 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int UsuarioID, int LivroID, global::System.Nullable<int> FuncionarioID, global::System.Nullable<global::System.DateTime> DataRequisicao, global::System.Nullable<global::System.DateTime> DataDevolucao, string Status, int Original_RequisicaoID, int Original_UsuarioID, int Original_LivroID, global::System.Nullable<int> Original_FuncionarioID, global::System.Nullable<global::System.DateTime> Original_DataRequisicao, global::System.Nullable<global::System.DateTime> Original_DataDevolucao, string Original_Status, int RequisicaoID) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(UsuarioID));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(LivroID));
-            if ((FuncionarioID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(FuncionarioID.Value));
+        public virtual int Update(global::System.Nullable<int> RequisicaoID, global::System.Nullable<int> UsuarioID, global::System.Nullable<int> LivroID, global::System.Nullable<int> FuncionarioID, global::System.Nullable<global::System.DateTime> DataDevolucao, string Status) {
+            if ((RequisicaoID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(RequisicaoID.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((UsuarioID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(UsuarioID.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((DataRequisicao.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(DataRequisicao.Value));
+            if ((LivroID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(LivroID.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((DataDevolucao.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(DataDevolucao.Value));
+            if ((FuncionarioID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(FuncionarioID.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
+            if ((DataDevolucao.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(DataDevolucao.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
             if ((Status == null)) {
-                throw new global::System.ArgumentNullException("Status");
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Status));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Status));
             }
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_RequisicaoID));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_UsuarioID));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_LivroID));
-            if ((Original_FuncionarioID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_FuncionarioID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            if ((Original_DataRequisicao.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(Original_DataRequisicao.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
-            }
-            if ((Original_DataDevolucao.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((System.DateTime)(Original_DataDevolucao.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Status == null)) {
-                throw new global::System.ArgumentNullException("Original_Status");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_Status));
-            }
-            this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(RequisicaoID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5973,14 +5924,6 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
                     this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int UsuarioID, int LivroID, global::System.Nullable<int> FuncionarioID, global::System.Nullable<global::System.DateTime> DataRequisicao, global::System.Nullable<global::System.DateTime> DataDevolucao, string Status, int Original_RequisicaoID, int Original_UsuarioID, int Original_LivroID, global::System.Nullable<int> Original_FuncionarioID, global::System.Nullable<global::System.DateTime> Original_DataRequisicao, global::System.Nullable<global::System.DateTime> Original_DataDevolucao, string Original_Status) {
-            return this.Update(UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevolucao, Status, Original_RequisicaoID, Original_UsuarioID, Original_LivroID, Original_FuncionarioID, Original_DataRequisicao, Original_DataDevolucao, Original_Status, Original_RequisicaoID);
         }
     }
     
@@ -6105,18 +6048,18 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Usuarios";
-            tableMapping.ColumnMappings.Add("DataCadastro", "DataCadastro");
             tableMapping.ColumnMappings.Add("UsuarioID", "UsuarioID");
             tableMapping.ColumnMappings.Add("Nome", "Nome");
             tableMapping.ColumnMappings.Add("Email", "Email");
             tableMapping.ColumnMappings.Add("Telefone", "Telefone");
+            tableMapping.ColumnMappings.Add("DataCadastro", "DataCadastro");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "dbo.DeletarLivro";
+            this._adapter.DeleteCommand.CommandText = "dbo.DeletarUsuario";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.StoredProcedure;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, "LivroID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, "UsuarioID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "dbo.InserirUsuario";
@@ -7894,21 +7837,21 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._requisicoesTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Requisicoes.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._requisicoesTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._usuariosTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Usuarios.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._usuariosTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._requisicoesTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Requisicoes.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._requisicoesTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -7938,19 +7881,19 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._requisicoesTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Requisicoes.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._requisicoesTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._usuariosTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Usuarios.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._usuariosTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._requisicoesTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Requisicoes.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._requisicoesTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -7964,19 +7907,19 @@ SELECT RequisicaoID, UsuarioID, LivroID, FuncionarioID, DataRequisicao, DataDevo
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateDeletedRows(BibliotecaDBDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._usuariosTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Usuarios.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._usuariosTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._requisicoesTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Requisicoes.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._requisicoesTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._usuariosTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Usuarios.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._usuariosTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
