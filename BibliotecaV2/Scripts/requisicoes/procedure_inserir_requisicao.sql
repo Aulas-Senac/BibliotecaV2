@@ -10,6 +10,6 @@ BEGIN
     UPDATE Livros SET QuantidadeDisponivel = QuantidadeDisponivel - 1 
     WHERE LivroID = @LivroID AND QuantidadeDisponivel > 0;
 
-    INSERT INTO Requisicoes(UsuarioID, LivroID, FuncionarioID, DataDevolucao)
-    VALUES(@UsuarioID, @LivroID, @FuncionarioID, DATEADD(DAY, 7, GETDATE()))
+    INSERT INTO Requisicoes(UsuarioID, LivroID, FuncionarioID, DataDevolucao, Status)
+    VALUES(@UsuarioID, @LivroID, @FuncionarioID, DATEADD(DAY, 7, GETDATE()), 'Aprovada')
 END
