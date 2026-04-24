@@ -69,7 +69,6 @@
             // dtpDataDevolucao
             // 
             this.dtpDataDevolucao.CustomFormat = "dd/MM/yyyy HH:mm:ss";
-            this.dtpDataDevolucao.Enabled = false;
             this.dtpDataDevolucao.Location = new System.Drawing.Point(28, 232);
             this.dtpDataDevolucao.Name = "dtpDataDevolucao";
             this.dtpDataDevolucao.Size = new System.Drawing.Size(256, 20);
@@ -102,6 +101,7 @@
             this.btnLimpar.TabIndex = 95;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // lblBuscar
             // 
@@ -128,6 +128,7 @@
             this.btnAtualizarLista.TabIndex = 92;
             this.btnAtualizarLista.Text = "Atualizar Lista";
             this.btnAtualizarLista.UseVisualStyleBackColor = true;
+            this.btnAtualizarLista.Click += new System.EventHandler(this.btnAtualizarLista_Click);
             // 
             // btnRemover
             // 
@@ -137,6 +138,7 @@
             this.btnRemover.TabIndex = 91;
             this.btnRemover.Text = "Remover";
             this.btnRemover.UseVisualStyleBackColor = true;
+            this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
             // 
             // lboDados
             // 

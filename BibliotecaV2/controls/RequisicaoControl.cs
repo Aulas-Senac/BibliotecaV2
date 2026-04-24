@@ -22,11 +22,12 @@ namespace BibliotecaV2.controls
         private List<LivrosRow> livros = new List<LivrosRow>();
         private List<FuncionariosRow> funcionarios = new List<FuncionariosRow>();
 
+        private bool isConfiguracaoInicial = false;
+
         public RequisicaoControl()
         {
             InitializeComponent();
-            AtualizarDados();
-            FormatarDatas();
+            IniciarConfiguracoes(); 
         }
 
         private void FormatarDatas()
@@ -37,54 +38,69 @@ namespace BibliotecaV2.controls
 
             dtpDataDevolucao.Format = DateTimePickerFormat.Custom;
             dtpDataDevolucao.CustomFormat = "dd/MM/yyyy HH:mm:ss";
+            dtpDataDevolucao.Enabled = false;
+        }
+
+        private void IniciarConfiguracoes()
+        {
+            if (!isConfiguracaoInicial)
+            {
+                FormatarDatas();
+                cboStatus.Enabled = false;
+
+                ConfigurarUsuarios();
+                ConfigurarLivros();
+                ConfigurarFuncionarios();
+
+                ConfigurarCombosBox();
+                AtualizarDados();
+            }
         }
 
         private void AtualizarDados()
         {
             ConfigurarRequisicoes();
-            ConfigurarUsuarios();
-            ConfigurarLivros();
-            ConfigurarFuncionarios();
-
-            ConfigurarListBoxDados();
-            ConfigurarComboBox();
         }
 
         private void ConfigurarRequisicoes()
         {
             RequisicoesTableAdapter requisicaoTable = new RequisicoesTableAdapter();
             requisicoes = requisicaoTable.GetData().ToList();
+
+            ConfigurarListBoxDados();
+        }
+
+        private void ConfigurarListBoxDados()
+        {
+            lboDados.Items.Clear();
+
+            foreach (var requisicao in requisicoes)
+            {
+                lboDados.Items.Add(requisicao);
+            }
         }
 
         private void ConfigurarUsuarios()
         {
+
             UsuariosTableAdapter usuariosTable = new UsuariosTableAdapter();
             usuarios = usuariosTable.GetData().ToList();
+
         }
 
         private void ConfigurarLivros()
         {
+
             LivrosTableAdapter livrosTable = new LivrosTableAdapter();
             livros = livrosTable.GetData().ToList();
         }
 
         private void ConfigurarFuncionarios()
         {
+
             FuncionariosTableAdapter funcionariosTable = new FuncionariosTableAdapter();
             funcionarios = funcionariosTable.GetData().ToList();
-        }
-
-        private void ConfigurarListBoxDados()
-        {
-            foreach (var requisicao in requisicoes)
-            {
-                UsuariosRow usuarioEncontrado = ObterUsuarioPorId(requisicao.UsuarioID);
-                LivrosRow livroEncontrado = ObterLivroPorId(requisicao.LivroID);
-                FuncionariosRow funcionarioEncontrado = ObterFuncionarioPorId(requisicao.FuncionarioID);
-
-                lboDados.Items.Add(requisicao);
-            }
-        }
+        }   
 
         private UsuariosRow ObterUsuarioPorId(int id)
         {
@@ -103,26 +119,33 @@ namespace BibliotecaV2.controls
 
         private void LimparElementos()
         {
-            cboUsuario.Items.Clear();
-            cboLivro.Items.Clear();
-            cboFuncionario.Items.Clear();
+            cboUsuario.SelectedIndex = -1;
+            cboLivro.SelectedIndex = -1;
+            cboFuncionario.SelectedIndex = -1;
+            dtpDataRequisicao.Value = DateTime.Now;
+            dtpDataDevolucao.Value = DateTime.Now;
+            cboStatus.SelectedIndex = -1;
+            lboDados.SelectedItem = null;
         }
 
-        private void ConfigurarComboBox()
+        private void ConfigurarCombosBox()
         {
             LimparElementos();
 
+            cboUsuario.DisplayMember = "Nome";
+            cboUsuario.DataSource = usuarios;
+
+            cboLivro.DisplayMember = "Titulo";
+            cboLivro.DataSource = livros;
+
+            cboFuncionario.DisplayMember = "NomeCompleto";
+            cboFuncionario.DataSource = funcionarios;
+
+            // ajustar itens do cbo
+            List<String> status = new List<string>();
+
             foreach (var requisicao in requisicoes)
             {
-
-                UsuariosRow usuarioEncontrado = usuarios.FirstOrDefault(u => u.UsuarioID == requisicao.UsuarioID);
-                LivrosRow livroEncontrado = livros.FirstOrDefault(l => l.LivroID == requisicao.LivroID);
-                FuncionariosRow funcionarioEncontrado = funcionarios.FirstOrDefault(f => f.FuncionarioID == requisicao.FuncionarioID);
-
-                cboUsuario.Items.Add(usuarioEncontrado.Nome);
-                cboLivro.Items.Add(livroEncontrado.Titulo);
-                cboFuncionario.Items.Add(funcionarioEncontrado.NomeCompleto);
-
                 if (!cboStatus.Items.Contains(requisicao.Status))
                 {
                     cboStatus.Items.Add(requisicao.Status);
@@ -132,7 +155,60 @@ namespace BibliotecaV2.controls
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+            UsuariosRow usuario = cboUsuario.SelectedItem as UsuariosRow;
+            LivrosRow livro = cboLivro.SelectedItem as LivrosRow;
+            FuncionariosRow funcionario = cboFuncionario.SelectedItem as FuncionariosRow;
 
+            if (usuario == null || livro == null || funcionario == null)
+            {
+                MessageBox.Show("Selecione usuário, livro e funcionário");
+                return;
+            }
+
+            using (RequisicoesTableAdapter requisicoesTable = new RequisicoesTableAdapter())
+            {
+                // cadastro
+                if (lboDados.SelectedItem == null)
+                {
+                    requisicoesTable.Insert(usuario.UsuarioID, livro.LivroID, funcionario.FuncionarioID);
+                }
+                // edição
+                else
+                {
+                    RequisicoesRow requisicao = lboDados.SelectedItem as RequisicoesRow;
+
+                    if (requisicao == null) return;
+
+                    requisicoesTable.Update(requisicao.RequisicaoID, usuario.UsuarioID, livro.LivroID, funcionario.FuncionarioID, requisicao.DataDevolucao, requisicao.Status);
+                }
+            }
+            AtualizarDados();
+            LimparElementos();
+        }
+
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            LimparElementos();
+        }
+
+        private void btnAtualizarLista_Click(object sender, EventArgs e)
+        {
+            AtualizarDados();
+        }
+
+        private void btnRemover_Click(object sender, EventArgs e)
+        {
+            RequisicoesRow requisicao = lboDados.SelectedItem as RequisicoesRow;
+
+            if (requisicao == null) return;
+
+            RequisicoesTableAdapter requisicoesTable = new RequisicoesTableAdapter();
+
+            requisicoesTable.Delete(requisicao.RequisicaoID);
+
+            AtualizarDados();
+            LimparElementos();
         }
 
         private void lboDados_SelectedIndexChanged(object sender, EventArgs e)
@@ -141,23 +217,25 @@ namespace BibliotecaV2.controls
 
             if (requisicao == null) return;
 
+            cboStatus.Enabled = true;
+
             UsuariosRow usuario = ObterUsuarioPorId(requisicao.UsuarioID);
             LivrosRow livro = ObterLivroPorId(requisicao.LivroID);
             FuncionariosRow funcionario = ObterFuncionarioPorId(requisicao.FuncionarioID);
 
             if (usuario != null)
             {
-                cboUsuario.Text = usuario.Nome;
+                cboUsuario.SelectedItem = usuario;
             }
 
             if (livro != null)
             {
-                cboLivro.Text = livro.Titulo;
+                cboLivro.SelectedItem = livro;
             }
 
             if (funcionario != null)
             {
-                cboFuncionario.Text = funcionario.NomeCompleto;
+                cboFuncionario.SelectedItem = funcionario;
             }
 
             dtpDataRequisicao.Value = requisicao.DataRequisicao;

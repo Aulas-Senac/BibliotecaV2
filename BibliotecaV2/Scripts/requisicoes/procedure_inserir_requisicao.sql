@@ -13,3 +13,6 @@ BEGIN
     INSERT INTO Requisicoes(UsuarioID, LivroID, FuncionarioID, DataDevolucao, Status)
     VALUES(@UsuarioID, @LivroID, @FuncionarioID, DATEADD(DAY, 7, GETDATE()), 'Aprovada')
 END
+
+
+exec ObterRequisicao
