@@ -179,7 +179,7 @@ namespace BibliotecaV2.controls
 
                     if (requisicao == null) return;
 
-                    requisicoesTable.Update(requisicao.RequisicaoID, usuario.UsuarioID, livro.LivroID, funcionario.FuncionarioID, requisicao.DataDevolucao, requisicao.Status);
+                    requisicoesTable.Update(requisicao.RequisicaoID, usuario.UsuarioID, livro.LivroID, funcionario.FuncionarioID, dtpDataDevolucao.Value, cboStatus.SelectedItem.ToString());
                 }
             }
             AtualizarDados();
