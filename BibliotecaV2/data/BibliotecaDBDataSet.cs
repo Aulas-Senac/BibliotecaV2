@@ -32,7 +32,7 @@ namespace BibliotecaV2.data
 
                 string dataDevolucao = this.IsDataDevolucaoNull() ? "Devolvido" : this.DataDevolucao.ToString("dd/MM/yyyy HH:mm:ss");
 
-                return $"{usuarioEncontrado.Nome} | {livroEncontrado.Titulo} | {funcionarioEncontrado.NomeCompleto} | {this.DataRequisicao} |{dataDevolucao} | {this.Status}";
+                return $"{usuarioEncontrado.Nome} | {livroEncontrado.Titulo} | {funcionarioEncontrado.NomeCompleto} | {this.DataRequisicao} | {dataDevolucao} | {this.Status}";
             }
         }
 

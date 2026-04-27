@@ -27,7 +27,8 @@ namespace BibliotecaV2.controls
         public RequisicaoControl()
         {
             InitializeComponent();
-            IniciarConfiguracoes(); 
+            IniciarConfiguracoes();
+            LimparElementos();
         }
 
         private void FormatarDatas()
@@ -51,9 +52,9 @@ namespace BibliotecaV2.controls
                 ConfigurarUsuarios();
                 ConfigurarLivros();
                 ConfigurarFuncionarios();
-
-                ConfigurarCombosBox();
+    
                 AtualizarDados();
+                ConfigurarCombosBox();
             }
         }
 
@@ -126,12 +127,11 @@ namespace BibliotecaV2.controls
             dtpDataDevolucao.Value = DateTime.Now;
             cboStatus.SelectedIndex = -1;
             lboDados.SelectedItem = null;
+            cboStatus.Enabled = false;
         }
 
         private void ConfigurarCombosBox()
         {
-            LimparElementos();
-
             cboUsuario.DisplayMember = "Nome";
             cboUsuario.DataSource = usuarios;
 
@@ -142,8 +142,6 @@ namespace BibliotecaV2.controls
             cboFuncionario.DataSource = funcionarios;
 
             // ajustar itens do cbo
-            List<String> status = new List<string>();
-
             foreach (var requisicao in requisicoes)
             {
                 if (!cboStatus.Items.Contains(requisicao.Status))
@@ -151,6 +149,8 @@ namespace BibliotecaV2.controls
                     cboStatus.Items.Add(requisicao.Status);
                 }
             }
+
+            LimparElementos();
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
